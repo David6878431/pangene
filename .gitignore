@@ -1,0 +1,16 @@
+shells/
+shells2/
+shells3/
+*.swp
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+results/
+data/
+database/
+config.toml
+samples.tsv
+.pangene-workflows/

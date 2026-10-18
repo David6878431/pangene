@@ -1,0 +1,4 @@
+interface:
+  display_name: "泛基因组工作流"
+  short_description: "配置并运行通用泛基因组、短读长组装和 Docker 分析流程"
+  default_prompt: "使用 $pangene-workflows 配置样本清单并检查泛基因组分析流程。"

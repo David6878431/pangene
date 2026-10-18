@@ -1,0 +1,56 @@
+# Paths under [pipeline] are container paths for Docker; local paths for --executor local.
+# SAMPLES_TSV is always a host file, relative to this TOML file.
+[pipeline]
+SAMPLES_TSV = "samples.tsv"
+WORKDIR = "./results"
+REFERENCE = ""
+THREADS = 8
+SOFTCORE = 0.95
+PERMUTATIONS = 100
+SEED = 42
+ORTHOGROUPS_TSV = ""
+UNASSIGNED_TSV = ""
+PROTEIN_FASTA = ""
+EGGNOG_DB = ""
+TAX_SCOPE = ""
+REF_GFF = ""
+REF_FASTA = ""
+VARIANT_VCF = ""
+NEAR_GENE = 2000
+ORTHO_THREADS = 2
+MIN_IDENTITY = 90
+MIN_ALIGNMENT = 100
+ASM_PRESET = "asm10"
+MIN_CONTIG = 500
+MAX_REF_COVERAGE = 0.2
+QUALITY = 20
+UNQUALIFIED = 40
+N_BASE_LIMIT = 5
+SORT_MEMORY = "1G"
+MEGAHIT_MEMORY = 0.4
+CLUSTER_IDENTITY = 0.95
+CLUSTER_MEMORY_MB = 16000
+NOVEL_FASTA = ""
+NT_DATABASE = ""
+EXCLUDE_TAXIDS = ""
+BLAST_EVALUE = "1e-5"
+CONTAM_IDENTITY = 95
+CONTAM_COVERAGE = 80
+MAKER_OPTS = ""
+MAKER_BOPTS = ""
+MAKER_EXE = ""
+MAKER_INDEX = ""
+PAN_FASTA = ""
+PAN_GENES_BED = ""
+MIN_MAPQ = 20
+MIN_DEPTH = 2
+GENE_COVERAGE = 0.8
+CACTUS_MEMORY = "32Gi"
+GRAPH_PREFIX = ""
+
+[docker]
+host_workdir = "./results"
+host_data = "./data"
+host_database = "./database"
+image = "omicsclass/pan-genome:v1.0"
+annotation_image = "omicsclass/genome-annotation:v1.0"
