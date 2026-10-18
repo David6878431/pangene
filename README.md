@@ -4,6 +4,8 @@
 
 宿主机需要 Python ≥3.11；Python 包只有标准库依赖。Docker 镜像仍负责提供各阶段的 Linux 生信软件；本包不会安装这些工具或下载大型数据库。镜像内辅助脚本要求 Python ≥3.8 和 Bash ≥4。
 
+> **Docker 镜像获取：** 使用 Docker 运行本流程需要相应的生信镜像。需要 Docker 镜像，请联系 [1394248709@qq.com](mailto:1394248709@qq.com)。镜像文件单独提供，未包含在 GitHub 仓库或 Python 安装包中。
+
 ## 安装和起步
 
 ```bash
@@ -82,9 +84,12 @@ annotation_image = "omicsclass/genome-annotation:v1.0"
 Linux 改为 `/path/to/...`。镜像标签来自原脚本，**尚未在此 Windows 主机拉取或验证**。先在计算服务器检查镜像内的程序版本；版本不兼容时用自己验证过的镜像替换配置，不声称这些标签都包含新版工具。图流程的 Cactus/vg 索引格式尤其需要版本相容。
 
 ```bash
-docker pull omicsclass/pan-genome:v1.0
-docker run --rm --entrypoint /bin/bash omicsclass/pan-genome:v1.0 -lc 'bash --version; python3 --version'
+# 获取镜像压缩包后，替换为实际文件路径并导入
+docker load --input "/path/to/image.tar.gz"
+docker image ls
 ```
+
+将导入结果显示的实际镜像名和标签填写到 `config.toml` 的 `image` 或 `annotation_image`；压缩包文件名不一定等于镜像标签。
 
 每个阶段自动挂载包内脚本为只读 `/opt/workflows`、临时配置为只读 `/opt/config.sh`；结果目录读写 `/work`，输入 `/data` 与数据库 `/database` 只读。使用 `--rm --init`，无 `--group-add keep-groups`，无特权模式。目录名不能含逗号、双引号或换行（Docker --mount 语法限制）。host_data/host_database 未使用时可删除对应行，避免要求空目录。MAKER 控制文件里的路径也必须指向已挂载的位置。
 
